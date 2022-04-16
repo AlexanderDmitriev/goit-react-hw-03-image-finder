@@ -10,7 +10,6 @@ const initialValues={keyWord:''};
 const Searchbar = ({onSubmit}) => {
     const handleSubmit = (values, {resetForm}) => { 
         onSubmit(values);
-        console.log(values);
         resetForm(); 
   };
 

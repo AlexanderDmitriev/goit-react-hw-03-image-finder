@@ -12,6 +12,9 @@ state = {
 
 handleSearch = (values) => {
   console.log(values);
+  API.getImages(values).then(function (response) {
+    console.log(response.data.hits);
+  })
 };
 render(){
   return (

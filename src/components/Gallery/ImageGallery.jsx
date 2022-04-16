@@ -9,7 +9,6 @@ const ImageGallery = () => {
                 <ImageGalleryItem/>
                 <ImageGalleryItem/>
                 <ImageGalleryItem/>
-                <ImageGalleryItem/>
             </ImageGalleryList>
             <Button/>
         </>
