@@ -2,13 +2,14 @@ import styled from '@emotion/styled';
 import {Button} from '../Button'
 import {ImageGalleryItem} from './ImageGalleryItem';
 
-const ImageGallery = () => {
+const ImageGallery = ({imagesForGallery}) => {
+    /* console.log(imagesForGallery); */
     return (
         <>
             <ImageGalleryList>
-                <ImageGalleryItem/>
-                <ImageGalleryItem/>
-                <ImageGalleryItem/>
+            {imagesForGallery.map(image => <ImageGalleryItem 
+                key={image.id}
+                img={image}/>)}
             </ImageGalleryList>
             <Button/>
         </>
