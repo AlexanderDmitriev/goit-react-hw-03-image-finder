@@ -1,8 +1,7 @@
 import React from "react";
 import { Formik } from 'formik';
 import {HeaderBar,SearchForm,SearchFormButton, SearchFormButtonLabel,SearchFormInput} from './Searchbar.styled';
-//import {SearchForm,SearchFormButton} from './SearchingForm';
-import { BiSearchAlt2 } from 'react-icons/fa';
+import { MdSearch } from "react-icons/md";
 
 const initialValues={keyWord:''};
 
@@ -21,7 +20,8 @@ const Searchbar = ({onSubmit}) => {
                 >
                     <SearchForm>
                         <SearchFormButton type="submit">
-                            <span className="button-label">Search</span>
+                            <SearchFormButtonLabel>Search</SearchFormButtonLabel>
+                            <MdSearch size="30px"/>
                         </SearchFormButton>
 
                         <SearchFormInput
