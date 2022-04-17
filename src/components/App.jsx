@@ -5,8 +5,6 @@ import * as API from './servicies/api';
 import {Container} from './App.styled';
 import GlobalStyle from '../GlobalStyle';
 
-//let totalHits=0;
-
 export class App extends Component{
 state = {
   keyWord:'',
@@ -16,39 +14,32 @@ state = {
   totalHits:0,
   dataFromServer:null,
   loading:false,
+  images:[],
 };
 
- componentDidMount(){
-  /* API.getImages("cat").then(response => {
-    console.log(response.data.hits);
-    this.setState({totalHits:response.data.totalHits})
-    console.log("this.state.totalHits: ",this.state.totalHits);
-     this.setState(prevState => ({ 
-      id:response.data.hits.id,
-      webformatURL:response.data.hits.webformatURL,
-      largeImageURL:response.data.hits.largeImageURL,
-    })); 
-    console.log(this.state);
-  }); */
-  this.setState({loading:true});
-  fetch('https://pixabay.com/api/?key=25236091-8685fe5809d54541c15ad7685&q=cat&page=1&image_type=photo&orientation=horizontal&per_page=12')
-  .then(res=>res.json())
-  .then(dataFromServer=>this.setState({dataFromServer}))
-  .finally(()=>this.setState({loading:false}));
-};
+ handleSearch = async (values) => {
+  console.log("keyWord",values.keyWord);
 
-handleSearch = (values) => {
-  API.getImages(values).then(response => {
-    console.log(response.data.hits);
+  await API.getImages(values).then(response => {
+    console.log("response.data.hits ",response.data.hits);
     this.setState({totalHits:response.data.totalHits})
-    console.log("this.state.totalHits: ",this.state.totalHits);
-    /* this.setState(prevState => ({ 
+    console.log("totalHits: ",response.data.totalHits);
+
+    this.setState({keyWord:values});
+  console.log("state.keyWord",this.state.keyWord);
+
+  //response.map(img => (console.log(img)));
+
+     const newImages={
       id:response.data.hits.id,
-      webformatURL:response.data.hits.webformatURL,
-      largeImageURL:response.data.hits.largeImageURL,
-    })); */
-    console.log(this.state);
+      webformatURL: response.data.hits.webformatURL,
+      largeImageURL: response.data.hits.largeImageURL}; 
+
+     this.setState(prevState => ({ images:[newImages, ...prevState.images]}));
   }) 
+
+  console.log("images ",this.state.images);
+    console.log("state ",this.state);
 };
 
 render(){
