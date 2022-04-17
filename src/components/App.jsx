@@ -29,13 +29,15 @@ state = {
   console.log("state.keyWord",this.state.keyWord);
 
   //response.map(img => (console.log(img)));
+    for (const iterator of response.data.hits) {
+      const newImages={
+        id:iterator.id,
+        webformatURL: iterator.webformatURL,
+        largeImageURL: iterator.largeImageURL}; 
+      this.setState(prevState => ({ images:[newImages, ...prevState.images]}));
+    }
 
-     const newImages={
-      id:response.data.hits.id,
-      webformatURL: response.data.hits.webformatURL,
-      largeImageURL: response.data.hits.largeImageURL}; 
-
-     this.setState(prevState => ({ images:[newImages, ...prevState.images]}));
+     
   }) 
 
   console.log("images ",this.state.images);
