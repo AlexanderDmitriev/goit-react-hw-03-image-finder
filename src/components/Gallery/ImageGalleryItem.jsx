@@ -4,7 +4,7 @@ export const ImageGalleryItem = ({img}) => {
     console.log(img); 
     return (
         <GalleryItem>
-            <GalleryImage src={img.webformatURL} alt="oops" />
+            <GalleryImage src={img} alt="oops" />
         </GalleryItem>
     );
 };

@@ -3,13 +3,12 @@ import {Button} from '../Button'
 import {ImageGalleryItem} from './ImageGalleryItem';
 
 const ImageGallery = ({imagesForGallery}) => {
-    /* console.log(imagesForGallery); */
     return (
         <>
             <ImageGalleryList>
             {imagesForGallery.map(image => <ImageGalleryItem 
                 key={image.id}
-                img={image}/>)}
+                img={image.webformatURL}/>)}
             </ImageGalleryList>
             <Button/>
         </>

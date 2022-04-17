@@ -36,15 +36,15 @@ state = {
   response.data.hits.map(img => this.setState(prevState => ({ images:[img, ...prevState.images]})));
 
 
-/*     for (const iterator of response.data.hits) {
+/*      for (const iterator of response.data.hits) {
       const newImages={
         id:iterator.id,
         webformatURL: iterator.webformatURL,
         largeImageURL: iterator.largeImageURL}; 
       console.log(newImages);
-      array.push(newImages);
+      //array.push(newImages);
       this.setState(prevState => ({ images:[newImages, ...prevState.images]}));
-    } */
+    }  */
      
   }) 
   console.log("images ",this.state.images);
