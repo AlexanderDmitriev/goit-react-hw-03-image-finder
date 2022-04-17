@@ -22,33 +22,33 @@ state = {
 
  handleSearch = async (values) => {
   console.log("keyWord",values.keyWord);
-  const array=[];
+  //const array=[];
 
   await API.getImages(values).then(response => {
     console.log("response.data.hits ",response.data.hits);
-    this.setState({totalHits:response.data.totalHits})
-    console.log("totalHits: ",response.data.totalHits);
+    /* this.setState({totalHits:response.data.totalHits})
+    console.log("totalHits: ",response.data.totalHits); */
 
-    this.setState({keyWord:values});
-  console.log("state.keyWord",this.state.keyWord);
+    /* this.setState({keyWord:values.tags});
+  console.log("state.keyWord",this.state.keyWord); */
 
   //response.map(img => (console.log(img)));
   response.data.hits.map(img => this.setState(prevState => ({ images:[img, ...prevState.images]})));
 
 
-    for (const iterator of response.data.hits) {
+/*     for (const iterator of response.data.hits) {
       const newImages={
         id:iterator.id,
         webformatURL: iterator.webformatURL,
         largeImageURL: iterator.largeImageURL}; 
       console.log(newImages);
       array.push(newImages);
-      //this.setState(prevState => ({ images:[newImages, ...prevState.images]}));
-    }
+      this.setState(prevState => ({ images:[newImages, ...prevState.images]}));
+    } */
      
   }) 
   console.log("images ",this.state.images);
-    console.log("array ",array);
+    //console.log("array ",array);
     console.log("state ",this.state);
 };
 
