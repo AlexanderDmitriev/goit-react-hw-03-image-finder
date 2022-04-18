@@ -2,14 +2,16 @@ import styled from '@emotion/styled';
 import {Button} from '../Button'
 import {ImageGalleryItem} from './ImageGalleryItem';
 
-const ImageGallery = ({imagesForGallery,buttonHandler}) => {
+const ImageGallery = ({imagesForGallery,buttonHandler,openModal }) => {
     
     return (
         <>
             <ImageGalleryList>
             {imagesForGallery.map(image => <ImageGalleryItem 
                 key={image.id}
-                img={image.webformatURL}/>)}
+                img={image.webformatURL}
+                imgBig={image.largeImageURL}
+                openModal={openModal}/>)}
             </ImageGalleryList>
             <Button onClick={buttonHandler}/>
         </>

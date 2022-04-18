@@ -26,10 +26,11 @@ class Modal extends Component {
     };
     
     render(){
+        const { currentImageUrl, currentImageDescription } = this.props;
         return createPortal(
-            <ModalOverlay>
+            <ModalOverlay onClick={this.handleBackDrop}>
                 <ModalContent>
-                    <img src="" alt="oops" />
+                    <img src={currentImageUrl} alt={currentImageDescription} />
                 </ModalContent>
             </ModalOverlay>,
             modalRoot

@@ -14,6 +14,8 @@ state = {
   images:[],
   page:1,
   showModal:false,
+  currentImageUrl: null,
+    currentImageDescription: null,
 };
 
  handleSearch = async (values) => {
@@ -38,18 +40,39 @@ toggleModal = () => {
   this.setState(({showModal}) => ({showModal:!showModal}));
 };
 
+openModal = e => {
+  const currentImageUrl = e.target.dataset.large;
+  const currentImageDescription = e.target.alt;
+
+  if (e.target.nodeName === 'IMG') {
+    this.setState(({ showModal }) => ({
+      showModal: !showModal,
+      currentImageUrl: currentImageUrl,
+      currentImageDescription: currentImageDescription,
+    }));
+  }
+};
+
 
 render(){
-  const {images, loading,showModal} = this.state;
+  const {images, loading,showModal,currentImageUrl,currentImageDescription} = this.state;
 
   return (
     <>
       <GlobalStyle/>
       <Container>
         <Searchbar onSubmit={this.handleSearch}/>
-        {(images.length>0)&&<ImageGallery imagesForGallery={images} buttonHandler={this.loadMoreHandler}/>}
+        {(images.length>0)&&<ImageGallery 
+          imagesForGallery={images} 
+          buttonHandler={this.loadMoreHandler}
+          openModal={this.openModal}
+          />}
         {(loading)&&<Spinner size={125} thickness={100} speed={100} color="#3f51b5"/>}
-        {showModal&&<Modal onClose={this.toggleModal}/>}
+        {showModal&&<Modal 
+          onClose={this.toggleModal}
+          currentImageUrl={currentImageUrl}
+          currentImageDescription={currentImageDescription}
+          />}
       </Container>
     </>
   );
