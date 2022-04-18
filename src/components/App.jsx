@@ -5,14 +5,15 @@ import * as API from './servicies/api';
 import {Container} from './App.styled';
 import GlobalStyle from '../GlobalStyle';
 import {Spinner} from './App.styled';
+import Modal from './Modal';
 
 export class App extends Component{
 state = {
   keyWord:'',
-  largeImageURL:'',
   loading:false,
   images:[],
   page:1,
+  showModal:false,
 };
 
  handleSearch = async (values) => {
@@ -33,9 +34,13 @@ loadMoreHandler = async () => {
       (prevState =>({loading:false, images:[...prevState.images, ...response.data.hits] })));
 };
 
+toggleModal = () => {
+  this.setState(({showModal}) => ({showModal:!showModal}));
+};
+
 
 render(){
-  const {images, loading} = this.state;
+  const {images, loading,showModal} = this.state;
 
   return (
     <>
@@ -44,6 +49,7 @@ render(){
         <Searchbar onSubmit={this.handleSearch}/>
         {(images.length>0)&&<ImageGallery imagesForGallery={images} buttonHandler={this.loadMoreHandler}/>}
         {(loading)&&<Spinner size={125} thickness={100} speed={100} color="#3f51b5"/>}
+        {showModal&&<Modal onClose={this.toggleModal}/>}
       </Container>
     </>
   );
