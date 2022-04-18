@@ -1,8 +1,8 @@
 import styled from '@emotion/styled';
 
-export const Button = () => {
+export const Button = ({onClick}) => {
     return (
-        <CustomButton type='button'>Load more</CustomButton>
+        <CustomButton type='button' onClick={onClick}>Load more</CustomButton>
     );
 };
 

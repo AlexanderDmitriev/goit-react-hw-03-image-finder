@@ -2,15 +2,14 @@ import axios from 'axios';
 
 const BASE_URL='https://pixabay.com/api/';
 const PERSONAL_KEY='25236091-8685fe5809d54541c15ad7685';
-const searchParams = 'id,webformatURL,largeImageURL';
 
-export const getImages = async data => { 
+export const getImages = async (data,page) => { 
     const url=
-      `${BASE_URL}?key=${PERSONAL_KEY}&q=${data.keyWord}
-      &page=1&image_type=photo&orientation=horizontal
-      &fields=${searchParams}&per_page=12`;
+      `${BASE_URL}?key=${PERSONAL_KEY}&q=${data.keyWord}&page=${page}
+          &image_type=photo&orientation=horizontal&per_page=12`;
     try {
       const response= await axios.get(url);
+      console.log(url);
     if (response.data.totalHits > 0) {
         return response;
       }

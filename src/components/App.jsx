@@ -8,20 +8,31 @@ import {Spinner} from './App.styled';
 
 export class App extends Component{
 state = {
+  keyWord:'',
   largeImageURL:'',
   loading:false,
   images:[],
+  page:1,
 };
 
  handleSearch = async (values) => {
-  this.setState({loading:true});
+  this.setState({loading:true, keyWord:values});
   setTimeout(() => {
-     API.getImages(values).then(response => {
-      this.setState({loading:false});
-      console.log("response.data.hits ",response.data.hits);
-      this.setState({ images:response.data.hits });
+     API.getImages(values,1).then(response => {
+      this.setState({loading:false, images:response.data.hits });
     })
   }, 1000);
+  
+};
+
+loadMoreHandler = async () => {
+  this.setState(prevState => ({
+    page: prevState.page + 1,
+  }));
+  this.setState({loading:true});
+    API.getImages(this.state.keyWord,this.state.page+1)
+    .then(response => this.setState
+      (prevState =>({loading:false, images:[...prevState.images, ...response.data.hits] })));
 };
 
 
@@ -33,9 +44,8 @@ render(){
       <GlobalStyle/>
       <Container>
         <Searchbar onSubmit={this.handleSearch}/>
-        {(images.length>0)&&<ImageGallery imagesForGallery={images}/>}
+        {(images.length>0)&&<ImageGallery imagesForGallery={images} buttonHandler={this.loadMoreHandler}/>}
         {(loading)&&<Spinner size={125} thickness={100} speed={100} color="#3f51b5"/>}
-        
       </Container>
     </>
   );

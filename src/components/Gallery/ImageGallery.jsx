@@ -2,7 +2,8 @@ import styled from '@emotion/styled';
 import {Button} from '../Button'
 import {ImageGalleryItem} from './ImageGalleryItem';
 
-const ImageGallery = ({imagesForGallery}) => {
+const ImageGallery = ({imagesForGallery,buttonHandler}) => {
+    
     return (
         <>
             <ImageGalleryList>
@@ -10,7 +11,7 @@ const ImageGallery = ({imagesForGallery}) => {
                 key={image.id}
                 img={image.webformatURL}/>)}
             </ImageGalleryList>
-            <Button/>
+            <Button onClick={buttonHandler}/>
         </>
         
         
