@@ -16,12 +16,10 @@ state = {
 };
 
  handleSearch = async (values) => {
-  this.setState({loading:true, keyWord:values});
-  setTimeout(() => {
+  this.setState({loading:true, keyWord:values,page:1});
      API.getImages(values,1).then(response => {
       this.setState({loading:false, images:response.data.hits });
     })
-  }, 1000);
   
 };
 
