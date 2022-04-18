@@ -4,47 +4,37 @@ import ImageGallery from './Gallery';
 import * as API from './servicies/api';
 import {Container} from './App.styled';
 import GlobalStyle from '../GlobalStyle';
+import {Spinner} from './App.styled';
 
 export class App extends Component{
 state = {
-  id:'',
-  webformatURL:'',
   largeImageURL:'',
   loading:false,
   images:[],
 };
 
  handleSearch = async (values) => {
-  console.log("keyWord",values.keyWord);
-
-  await API.getImages(values).then(response => {
-    console.log("response.data.hits ",response.data.hits);
-
-  response.data.hits.map(img => 
-    this.setState(prevState => ({ images:[img, ...prevState.images]})));
-
-/*      for (const iterator of response.data.hits) {
-      const newImages={
-        id:iterator.id,
-        webformatURL: iterator.webformatURL,
-        largeImageURL: iterator.largeImageURL}; 
-      console.log(newImages);
-      this.setState(prevState => ({ images:[newImages, ...prevState.images]}));
-    }  */
-     
-  }) 
-  console.log("images ",this.state.images);
-  console.log("state ",this.state);
+  this.setState({loading:true});
+  setTimeout(() => {
+     API.getImages(values).then(response => {
+      this.setState({loading:false});
+      console.log("response.data.hits ",response.data.hits);
+      this.setState({ images:response.data.hits });
+    })
+  }, 1000);
 };
 
+
 render(){
+  const {images, loading} = this.state;
+
   return (
     <>
       <GlobalStyle/>
       <Container>
         <Searchbar onSubmit={this.handleSearch}/>
-        {(this.state.images.length>0)&&<ImageGallery imagesForGallery={this.state.images}/>}
-        {(this.state.loading)&&<h1>Loading</h1>}
+        {(images.length>0)&&<ImageGallery imagesForGallery={images}/>}
+        {(loading)&&<Spinner size={125} thickness={100} speed={100} color="#3f51b5"/>}
         
       </Container>
     </>

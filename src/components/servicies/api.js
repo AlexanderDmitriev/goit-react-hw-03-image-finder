@@ -16,7 +16,7 @@ export const getImages = async data => {
       }
       throw new Error('Sorry, there are no images matching your search query. Please try again.');
     } catch (error) {
-      console.log(error);
+      alert(error);
     }
     
 }
