@@ -1,9 +1,8 @@
 import styled from '@emotion/styled';
 import { Form, Field } from 'formik';
 
-
 export const HeaderBar = styled.header`
-    top: 0;
+  top: 0;
   left: 0;
   position: sticky;
   z-index: 1100;
@@ -22,55 +21,55 @@ export const HeaderBar = styled.header`
 `;
 
 export const SearchForm = styled(Form)`
-      display: flex;
-        align-items: center;
-        width: 100%;
-        max-width: ${props => props.theme.spacing(150)};
-        background-color: ${props => props.theme.colors.white};
-        border-radius: ${props => props.theme.spacing(1)};
-        overflow: hidden;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: ${props => props.theme.spacing(150)};
+  background-color: ${props => props.theme.colors.white};
+  border-radius: ${props => props.theme.spacing(1)};
+  overflow: hidden;
 `;
 
 export const SearchFormButton = styled.button`
-    display: inline-block;
-    width: ${props => props.theme.spacing(12)};
-    height: ${props => props.theme.spacing(12)};
-    border: 0;
-    /* background-image: url('https://image.flaticon.com/icons/svg/149/149852.svg'); */
-    background-size: 40%;
-    background-repeat: no-repeat;
-    background-position: center;
-    opacity: 0.6;
-    transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
-    cursor: pointer;
-    outline: none;
-    :hover,:focus {
-        opacity: 1;
-}
+  display: inline-block;
+  width: ${props => props.theme.spacing(12)};
+  height: ${props => props.theme.spacing(12)};
+  border: 0;
+  background-size: 40%;
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 0.6;
+  transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  outline: none;
+  :hover,
+  :focus {
+    opacity: 1;
+  }
 `;
 export const SearchFormButtonLabel = styled.span`
   position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    clip-path: inset(50%);
-    border: 0;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  clip-path: inset(50%);
+  border: 0;
 `;
 
- export const SearchFormInput = styled(Field)`
-    display: inline-block;
-    width: 100%;
+export const SearchFormInput = styled(Field)`
+  display: inline-block;
+  width: 100%;
+  font: inherit;
+  font-size: ${props => props.theme.spacing(5)};
+  border: none;
+  outline: none;
+  padding-left: ${props => props.theme.spacing(1)};
+  padding-right: ${props => props.theme.spacing(1)};
+  ::placeholder {
     font: inherit;
-    font-size: ${props => props.theme.spacing(5)};
-    border: none;
-    outline: none;
-    padding-left: ${props => props.theme.spacing(1)};
-    padding-right: ${props => props.theme.spacing(1)};
-    ::placeholder {
-      font: inherit;
-      font-size: ${props => props.theme.spacing(4.5)};
-    }
- `;
+    font-size: ${props => props.theme.spacing(4.5)};
+  }
+`;
