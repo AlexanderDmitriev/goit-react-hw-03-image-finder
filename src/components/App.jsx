@@ -42,14 +42,12 @@ export class App extends Component {
     this.setState(({ showModal }) => ({ showModal: !showModal }));
   };
 
-  openModal = e => {
-    if (e.target.nodeName === 'IMG') {
+  openModal = (img) => {
       this.setState(({ showModal }) => ({
         showModal: !showModal,
-        currentImageUrl: e.target.dataset.large,
-        currentImageDescription: e.target.alt,
+        currentImageUrl: img
       }));
-    }
+    
   };
 
   render() {

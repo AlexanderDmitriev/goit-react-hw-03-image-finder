@@ -13,7 +13,7 @@ const ImageGallery = ({ imagesForGallery, buttonHandler, openModal }) => {
             key={image.id}
             img={image.webformatURL}
             imgBig={image.largeImageURL}
-            openModal={openModal}
+            openModal={()=>{openModal(image.largeImageURL)}}
           />
         ))}
       </ImageGalleryList>
